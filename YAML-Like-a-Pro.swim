@@ -27,7 +27,7 @@ more special attention than a mouse or keyboard. I've heard big names like Mark
 Shuttleworth of Canonical, mention in passing that all the data of his latest
 project was import / exportable in YAML.
 
-While this makes a lowly hacker like me grin from ear to ear, its sad to see
+While this makes a lowly hacker like me grin from ear to ear, it's sad to see
 the same common mistakes made over and over. "Mistake" is not quite the right
 word; the YAML files I see in the world are not /wrong/, they just aren't
 /right/!  People tend to use extra syntax when they don't need it, or not write
@@ -139,7 +139,7 @@ double) let you split strings on a single space character (just like in HTML).
 The newline character is parsed as a space. Let's see how to use this to good
 effect.
 
-"ActiveState"[http://www.activestate.com/]'s Stackato product uses a simple
+"ActiveState"[http://www.activestate.com/]'s "Stackato"[http://www.activestate.com/stackato/get_stackato] uses a simple
 YAML file to tell a PaaS cluster what a given application needs to run
 successfully. Let's look at a sample `stackato.yml`
 "file"[https://github.com/Stackato-Apps/drupal-pressflow/blob/35e474b53d19fb52c50be6533692477b8352938d/stackato.yml].
