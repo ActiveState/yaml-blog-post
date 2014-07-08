@@ -3,7 +3,7 @@ YAML Like a Pro
 
 YAML (YAML Ain't Markup Language) is a cross-programming-language data
 serialization language whose primary focus is Human Friendliness. This
-generally means less funny characters like ('`{}`, `[]`, `"`, etc), so
+generally means less funny characters like (`{}`, `[]`, `"`, etc), so
 that the data is easier to read and write. These characters /are/ used, but
 YAML tries hard to make them needed as little as possible; more for harder
 cases, less so for simple things.

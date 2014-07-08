@@ -10,7 +10,7 @@ See http://github.com/ingydotnet/swim-pm#readme
 
 YAML (YAML Ain't Markup Language) is a cross-programming-language data
 serialization language whose primary focus is Human Friendliness. This
-generally means less funny characters like ('C<{}>, C<[]>, C<">, etc), so that
+generally means less funny characters like (C<{}>, C<[]>, C<">, etc), so that
 the data is easier to read and write. These characters I<are> used, but YAML
 tries hard to make them needed as little as possible; more for harder cases,
 less so for simple things.

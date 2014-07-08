@@ -1,7 +1,7 @@
 YAML Like a Pro
 ===============
 
-YAML (YAML Ain't Markup Language) is a cross-programming-language data serialization language whose primary focus is Human Friendliness. This generally means less funny characters like ('`{}`, `[]`, `"`, etc), so that the data is easier to read and write. These characters _are_ used, but YAML tries hard to make them needed as little as possible; more for harder cases, less so for simple things.
+YAML (YAML Ain't Markup Language) is a cross-programming-language data serialization language whose primary focus is Human Friendliness. This generally means less funny characters like (`{}`, `[]`, `"`, etc), so that the data is easier to read and write. These characters _are_ used, but YAML tries hard to make them needed as little as possible; more for harder cases, less so for simple things.
 
 While the YAML language and data model was made deep enough to handle very complex needs of serialization, like object marshalling and stream processing, YAML most commonly gets used as a cheap and easy config file format. As one of the 3 original language designers, I can point out that while we didn't see YAML as a particulary excellent format for the config use case, it does tend to appeal to people for that. This is probably because of:
 
