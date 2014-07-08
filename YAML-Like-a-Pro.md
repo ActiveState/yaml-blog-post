@@ -10,9 +10,9 @@ While the YAML language and data model was made deep enough to handle very compl
 * Ability to scale up to more complex needs over time
 * The name is fun to say ;)
 
-These days I see YAML popping up in almost every imaginable type of project and framework; big and small, Open Source and Enterprise. I've sat through dozens of talks at conferences, where YAML shows up somewhere. It is never given any more special attention than a mouse or keyboard. I've heard big names like Mark Shuttleworth of Canonical, mention in passing that all the data of his latest project was import/exportable in YAML.
+These days I see YAML popping up in almost every imaginable type of project and framework; big and small, Open Source and Enterprise. I've sat through dozens of talks at conferences, where YAML shows up somewhere. It is never given any more special attention than a mouse or keyboard. I've heard big names like Mark Shuttleworth of Canonical, mention in passing that all the data of his latest project was import / exportable in YAML.
 
-While this makes a lowly hacker like me grin from ear to ear, its sad to see the same common mistakes made over and over. "Mistake" is not quite the right word; the YAML files I see in the world are not _wrong_, they just aren't _right_!  People tend to use extra syntax when they don't need it, or not write YAML in the most clean and elegant way. This leads to a cargo-cult, copy_paste effect where the same _not-so-beautiful/ things happen over and over.
+While this makes a lowly hacker like me grin from ear to ear, its sad to see the same common mistakes made over and over. "Mistake" is not quite the right word; the YAML files I see in the world are not _wrong_, they just aren't _right_!  People tend to use extra syntax when they don't need it, or not write YAML in the most clean and elegant way. This leads to a cargo-cult, copy / paste effect where the same _not-so-beautiful_ things happen over and over.
 
 In this article, I'd like to show you a few simple things that will make you "YAML like a Pro". I'll look at a couple of common use cases in the wild: the YAML used for [Travis CI](https://travis-ci.org/), and the YAML used by the Private PaaS framework [Stackato](http://stackato.com/). I'm showing these because I personally see them all the time, but the advice here is applicable to anything using YAML as a human input.
 
@@ -69,7 +69,7 @@ Characters like one of `!#&*>|?{}[],'"` and also strings that start with a dash 
 * Any strings that contain a colon+space, or space+pound
 This is YAML syntax for key/value separator or comment start. YAML allows for just a colon or pound to be used if a space is not next to them. That supports stuff like:
 * Strings that begin or end with whitespace characters
-This is **very** rare in config files
+This is **very** rare in config files.
 
 ## Do Split Your Long Strings
 

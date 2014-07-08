@@ -39,15 +39,14 @@ and framework; big and small, Open Source and Enterprise. I've sat through
 dozens of talks at conferences, where YAML shows up somewhere. It is never
 given any more special attention than a mouse or keyboard. I've heard big
 names like Mark Shuttleworth of Canonical, mention in passing that all the
-data of his latest project was import/exportable in YAML.
+data of his latest project was import / exportable in YAML.
 
 While this makes a lowly hacker like me grin from ear to ear, its sad to see
-the same common mistakes made over and over. "Mistake" is not quite the
-right word; the YAML files I see in the world are not I<wrong>, they just
-aren't I<right>! People tend to use extra syntax when they don't need it, or
-not write YAML in the most clean and elegant way. This leads to a cargo-
-cult, copyI<paste effect where the same >not-so-beautiful/ things happen
-over and over.
+the same common mistakes made over and over. "Mistake" is not quite the right
+word; the YAML files I see in the world are not I<wrong>, they just aren't
+I<right>! People tend to use extra syntax when they don't need it, or not
+write YAML in the most clean and elegant way. This leads to a cargo-cult, copy
+/ paste effect where the same I<not-so-beautiful> things happen over and over.
 
 In this article, I'd like to show you a few simple things that will make you
 "YAML like a Pro". I'll look at a couple of common use cases in the wild: the
@@ -146,7 +145,7 @@ stuff like:
 
 =item * Strings that begin or end with whitespace characters
 
-This is B<very> rare in config files
+This is B<very> rare in config files.
 
 =back
 
