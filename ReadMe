@@ -1,0 +1,9 @@
+This post is written in Swim: https://github.com/ingydotnet/swim-pm#readme
+
+To install a Swim formatter:
+
+    cpanm Swim
+
+Make changes in YAML-Like-a-Pro.swim and then run:
+
+    make
