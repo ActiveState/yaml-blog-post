@@ -23,7 +23,7 @@
 
 <p>These days I see YAML popping up in almost every imaginable type of project and framework; big and small, Open Source and Enterprise. I&#39;ve sat through dozens of talks at conferences, where YAML shows up somewhere. It is never given any more special attention than a mouse or keyboard. I&#39;ve heard big names like Mark Shuttleworth of Canonical, mention in passing that all the data of his latest project was import / exportable in YAML.</p>
 
-<p>While this makes a lowly hacker like me grin from ear to ear, its sad to see the same common mistakes made over and over. &quot;Mistake&quot; is not quite the right word; the YAML files I see in the world are not <em>wrong</em>, they just aren&#39;t <em>right</em>!  People tend to use extra syntax when they don&#39;t need it, or not write YAML in the most clean and elegant way. This leads to a cargo-cult, copy / paste effect where the same <em>not-so-beautiful</em> things happen over and over.</p>
+<p>While this makes a lowly hacker like me grin from ear to ear, it&#39;s sad to see the same common mistakes made over and over. &quot;Mistake&quot; is not quite the right word; the YAML files I see in the world are not <em>wrong</em>, they just aren&#39;t <em>right</em>!  People tend to use extra syntax when they don&#39;t need it, or not write YAML in the most clean and elegant way. This leads to a cargo-cult, copy / paste effect where the same <em>not-so-beautiful</em> things happen over and over.</p>
 
 <p>In this article, I&#39;d like to show you a few simple things that will make you &quot;YAML like a Pro&quot;. I&#39;ll look at a couple of common use cases in the wild: the YAML used for <a href="https://travis-ci.org/">Travis CI</a>, and the YAML used by the Private PaaS framework <a href="http://stackato.com/">Stackato</a>. I&#39;m showing these because I personally see them all the time, but the advice here is applicable to anything using YAML as a human input.</p>
 
@@ -98,7 +98,7 @@ before_install:
 
 <p>Here&#39;s a real YAML Pro Tip. All 3 of the scalar styles above (plain, single, double) let you split strings on a single space character (just like in HTML). The newline character is parsed as a space. Let&#39;s see how to use this to good effect.</p>
 
-<p><a href="http://www.activestate.com/">ActiveState</a>&#39;s Stackato product uses a simple YAML file to tell a PaaS cluster what a given application needs to run successfully. Let&#39;s look at a sample <code>stackato.yml</code> <a href="https://github.com/Stackato-Apps/drupal-pressflow/blob/35e474b53d19fb52c50be6533692477b8352938d/stackato.yml">file</a>.</p>
+<p>ActiveState&#39;s <a href="http://www.activestate.com/stackato/get_stackato">Stackato</a> uses a simple YAML file to tell a PaaS cluster what a given application needs to run successfully. Let&#39;s look at a sample <code>stackato.yml</code> <a href="https://github.com/Stackato-Apps/drupal-pressflow/blob/35e474b53d19fb52c50be6533692477b8352938d/stackato.yml">file</a>.</p>
 
 <p>Here&#39;s an abbreviated version:</p>
 
@@ -176,10 +176,6 @@ Sets as map keys:   # Dice rolls.
 <p>Finally, remember that YAML (1.2) is a complete superset of JSON. That means that a proper YAML loader should be able to load any JSON correctly. This is interesting, because YAML was invented 4 years before JSON. It just happened that JSON only had a 3 or 4 edge cases that were not valid YAML 1.1, so we made a few tiny adjustments to &quot;fix&quot; this in YAML 1.2.</p>
 
 <p>I hope you found this this information interesting and useful. Help out the cause by spreading the word. Stop by <code>#yaml</code> or <code>#stackato</code> on irc.freenode.net if you have questions or just want to chat.</p>
-
-<h1>Author</h1>
-
-<p>Ingy döt Net helped create YAML with Clark Evans and Oren Ben-Kiki. He also helped ActiveState create Stackato. He is working on next generation YAML tools, and an upcoming short book on YAML.</p>
 
 </div>
 </body>

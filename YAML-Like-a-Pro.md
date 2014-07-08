@@ -12,7 +12,7 @@ While the YAML language and data model was made deep enough to handle very compl
 
 These days I see YAML popping up in almost every imaginable type of project and framework; big and small, Open Source and Enterprise. I've sat through dozens of talks at conferences, where YAML shows up somewhere. It is never given any more special attention than a mouse or keyboard. I've heard big names like Mark Shuttleworth of Canonical, mention in passing that all the data of his latest project was import / exportable in YAML.
 
-While this makes a lowly hacker like me grin from ear to ear, its sad to see the same common mistakes made over and over. "Mistake" is not quite the right word; the YAML files I see in the world are not _wrong_, they just aren't _right_!  People tend to use extra syntax when they don't need it, or not write YAML in the most clean and elegant way. This leads to a cargo-cult, copy / paste effect where the same _not-so-beautiful_ things happen over and over.
+While this makes a lowly hacker like me grin from ear to ear, it's sad to see the same common mistakes made over and over. "Mistake" is not quite the right word; the YAML files I see in the world are not _wrong_, they just aren't _right_!  People tend to use extra syntax when they don't need it, or not write YAML in the most clean and elegant way. This leads to a cargo-cult, copy / paste effect where the same _not-so-beautiful_ things happen over and over.
 
 In this article, I'd like to show you a few simple things that will make you "YAML like a Pro". I'll look at a couple of common use cases in the wild: the YAML used for [Travis CI](https://travis-ci.org/), and the YAML used by the Private PaaS framework [Stackato](http://stackato.com/). I'm showing these because I personally see them all the time, but the advice here is applicable to anything using YAML as a human input.
 
@@ -75,7 +75,7 @@ This is **very** rare in config files.
 
 Here's a real YAML Pro Tip. All 3 of the scalar styles above (plain, single, double) let you split strings on a single space character (just like in HTML). The newline character is parsed as a space. Let's see how to use this to good effect.
 
-[ActiveState](http://www.activestate.com/)'s Stackato product uses a simple YAML file to tell a PaaS cluster what a given application needs to run successfully. Let's look at a sample `stackato.yml` [file](https://github.com/Stackato-Apps/drupal-pressflow/blob/35e474b53d19fb52c50be6533692477b8352938d/stackato.yml).
+ActiveState's [Stackato](http://www.activestate.com/stackato/get_stackato) uses a simple YAML file to tell a PaaS cluster what a given application needs to run successfully. Let's look at a sample `stackato.yml` [file](https://github.com/Stackato-Apps/drupal-pressflow/blob/35e474b53d19fb52c50be6533692477b8352938d/stackato.yml).
 
 Here's an abbreviated version:
 
@@ -150,7 +150,3 @@ If you just do these things, YAML will be 90% better world wide! I'll leave you 
 Finally, remember that YAML (1.2) is a complete superset of JSON. That means that a proper YAML loader should be able to load any JSON correctly. This is interesting, because YAML was invented 4 years before JSON. It just happened that JSON only had a 3 or 4 edge cases that were not valid YAML 1.1, so we made a few tiny adjustments to "fix" this in YAML 1.2.
 
 I hope you found this this information interesting and useful. Help out the cause by spreading the word. Stop by `#yaml` or `#stackato` on irc.freenode.net if you have questions or just want to chat.
-
-# Author
-
-Ingy döt Net helped create YAML with Clark Evans and Oren Ben-Kiki. He also helped ActiveState create Stackato. He is working on next generation YAML tools, and an upcoming short book on YAML.

@@ -41,7 +41,7 @@ given any more special attention than a mouse or keyboard. I've heard big
 names like Mark Shuttleworth of Canonical, mention in passing that all the
 data of his latest project was import / exportable in YAML.
 
-While this makes a lowly hacker like me grin from ear to ear, its sad to see
+While this makes a lowly hacker like me grin from ear to ear, it's sad to see
 the same common mistakes made over and over. "Mistake" is not quite the right
 word; the YAML files I see in the world are not I<wrong>, they just aren't
 I<right>! People tend to use extra syntax when they don't need it, or not
@@ -156,9 +156,9 @@ double) let you split strings on a single space character (just like in
 HTML). The newline character is parsed as a space. Let's see how to use this
 to good effect.
 
-L<ActiveState|http://www.activestate.com/>'s Stackato product uses a simple
-YAML file to tell a PaaS cluster what a given application needs to run
-successfully. Let's look at a sample C<stackato.yml> L<file|https://github.com/Stackato-Apps/drupal-
+ActiveState's L<Stackato|http://www.activestate.com/stackato/get_stackato>
+uses a simple YAML file to tell a PaaS cluster what a given application needs
+to run successfully. Let's look at a sample C<stackato.yml> L<file|https://github.com/Stackato-Apps/drupal-
 pressflow/blob/35e474b53d19fb52c50be6533692477b8352938d/stackato.yml>.
 
 Here's an abbreviated version:
@@ -245,11 +245,5 @@ made a few tiny adjustments to "fix" this in YAML 1.2.
 I hope you found this this information interesting and useful. Help out the
 cause by spreading the word. Stop by C<#yaml> or C<#stackato> on
 irc.freenode.net if you have questions or just want to chat.
-
-=head1 Author
-
-Ingy döt Net helped create YAML with Clark Evans and Oren Ben-Kiki. He also
-helped ActiveState create Stackato. He is working on next generation YAML
-tools, and an upcoming short book on YAML.
 
 =cut
