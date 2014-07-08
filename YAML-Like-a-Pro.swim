@@ -228,9 +228,3 @@ a few tiny adjustments to "fix" this in YAML 1.2.
 I hope you found this this information interesting and useful. Help out the
 cause by spreading the word. Stop by `#yaml` or `#stackato` on irc.freenode.net
 if you have questions or just want to chat.
-
-= Author
-
-Ingy döt Net helped create YAML with Clark Evans and Oren Ben-Kiki. He also
-helped ActiveState create Stackato. He is working on next generation YAML
-tools, and an upcoming short book on YAML.
