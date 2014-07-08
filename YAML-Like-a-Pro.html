@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>YAML Like a Pro</title>
+  <link href="//swimtext.org/assets/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="swim content">
+
+<h1 class="title">YAML Like a Pro</h1>
+
+<p>YAML (YAML Ain&#39;t Markup Language) is a cross-programming-language data serialization language whose primary focus is Human Friendliness. This generally means less funny characters like (&#39;<code>&#123;&#125;</code>, <code>[]</code>, <code>&quot;</code>, etc), so that the data is easier to read and write. These characters <em>are</em> used, but YAML tries hard to make them needed as little as possible; more for harder cases, less so for simple things.</p>
+
+<p>While the YAML language and data model was made deep enough to handle very complex needs of serialization, like object marshalling and stream processing, YAML most commonly gets used as a cheap and easy config file format. As one of the 3 original language designers, I can point out that while we didn&#39;t see YAML as a particulary excellent format for the config use case, it does tend to appeal to people for that. This is probably because of:</p>
+
+<ul>
+<li>Low need for special characters</li>
+<li>Readily available in most programming languages</li>
+<li>Ability to scale up to more complex needs over time</li>
+<li>The name is fun to say ;)</li>
+</ul>
+
+<p>These days I see YAML popping up in almost every imaginable type of project and framework; big and small, Open Source and Enterprise. I&#39;ve sat through dozens of talks at conferences, where YAML shows up somewhere. It is never given any more special attention than a mouse or keyboard. I&#39;ve heard big names like Mark Shuttleworth of Canonical, mention in passing that all the data of his latest project was import/exportable in YAML.</p>
+
+<p>While this makes a lowly hacker like me grin from ear to ear, its sad to see the same common mistakes made over and over. &quot;Mistake&quot; is not quite the right word; the YAML files I see in the world are not <em>wrong</em>, they just aren&#39;t <em>right</em>!  People tend to use extra syntax when they don&#39;t need it, or not write YAML in the most clean and elegant way. This leads to a cargo-cult, copy<em>paste effect where the same </em>not-so-beautiful/ things happen over and over.</p>
+
+<p>In this article, I&#39;d like to show you a few simple things that will make you &quot;YAML like a Pro&quot;. I&#39;ll look at a couple of common use cases in the wild: the YAML used for <a href="https://travis-ci.org/">Travis CI</a>, and the YAML used by the Private PaaS framework <a href="http://stackato.com/">Stackato</a>. I&#39;m showing these because I personally see them all the time, but the advice here is applicable to anything using YAML as a human input.</p>
+
+<h2>Don&#39;t Indent a Sequence inside a Mapping</h2>
+
+<p><strong>Travis CI</strong> is a wonderful Continuous Integration service that uses YAML for its user interface. Instructions for how a project should be tested can succinctly be encoded in YAML, and since the service needs to work the same for lots of languages, YAML is a good choice. The file is always called <code>.travis.yml</code>.</p>
+
+<p>In YAML, a hash or dictionary is called a <strong>Mapping</strong> and an array or list is called a <strong>Sequence</strong>. Many people don&#39;t realize that a sequence under a mapping doesn&#39;t need extra indentation. Let&#39;s look at the <code>.travis.yml</code> file of a popular project on <a href="https://github.com/">GitHub</a>, <a href="https://github.com/thoughtbot/factory_girl/blob/master/.travis.yml">factory_girl</a>.</p>
+
+<pre><code>rvm:
+  - 1.9.3
+  - 2.0.0
+  - 2.1.0
+  - jruby-19mode
+before_install:
+  - gem update --system
+install: &quot;bundle install&quot;
+script: &quot;bundle exec rake spec:unit spec:acceptance features&quot;
+jdk:
+  - openjdk6
+gemfile:
+  - gemfiles/3.1.gemfile
+  - gemfiles/3.2.gemfile
+  - gemfiles/4.0.gemfile
+  - gemfiles/4.1.gemfile
+branches:
+  only:
+    - master
+</code></pre>
+
+<p>This is perfectly valid YAML, but it can be more perfect! Every line that has a dash as its first visible character, has 2 extra spaces in front of it. ie It can be done this way:</p>
+
+<pre><code>rvm:
+- 1.9.3
+- 2.0.0
+- 2.1.0
+- jruby-19mode
+before_install:
+- gem update --system
+</code></pre>
+
+<p>The reason is that YAML counts the dash+space as indentation, and when done that way it looks really nice.</p>
+
+<p>This brings up 2 higher level YAML concepts. First, always use 2 character indentation. YAML accepts any number, but 2 spaces is always best, and it&#39;s the way YAML is dumped canonically. That leads to the second concept... when in doubt, look at how your YAML <strong>dumper</strong> outputs YAML. It is almost always the best way. (There&#39;s an exception to this, where humans can do a little better that I&#39;ll cover in a moment).</p>
+
+<h2>Don&#39;t Over-quote your Strings</h2>
+
+<p>YAML has 5 styles of writing string data. The 3 most common styles are plain (unquoted), single quoted, and double quoted. They all have different useful properties. Sometimes quotes are needed around a string, but usually they are not, especially for config strings. People tend to use quotes when they are not certain. While this might be safe and easy, why not learn the simple rules and Keep YAML Tidy?</p>
+
+<p>In the <code>travis.yml</code> file above, <strong>none</strong> of the double quotes used are needed. I&#39;ll guess that the author thought that strings with spaces in them should be quoted. This isn&#39;t the case. Let&#39;s review when quotes <strong>are</strong> needed.</p>
+
+<p>Without going into the quoting semantics of double vs single, let&#39;s see when <strong>plain</strong> style just won&#39;t work. Here are the basics:</p>
+
+<ul>
+<li>Any string that <strong>starts</strong> with a YAML syntax character
+<p>Characters like one of <code>!#&amp;*&gt;|?&#123;&#125;[],&#39;&quot;</code> and also strings that start with a dash followed by a space. Once YAML realizes from the first character that the data is a plain scalar, any of those characters can be used. (Unless it breaks the next rule.)</p>
+
+</li>
+<li>Any strings that contain a colon+space, or space+pound
+<p>This is YAML syntax for key/value separator or comment start. YAML allows for just a colon or pound to be used if a space is not next to them. That supports stuff like:</p>
+<pre><code>url: https://github.com/yaml/libyaml#readme
+</code></pre>
+
+</li>
+<li>Strings that begin or end with whitespace characters
+<p>This is <strong>very</strong> rare in config files</p>
+
+</li>
+</ul>
+
+<h2>Do Split Your Long Strings</h2>
+
+<p>Here&#39;s a real YAML Pro Tip. All 3 of the scalar styles above (plain, single, double) let you split strings on a single space character (just like in HTML). The newline character is parsed as a space. Let&#39;s see how to use this to good effect.</p>
+
+<p><a href="http://www.activestate.com/">ActiveState</a>&#39;s Stackato product uses a simple YAML file to tell a PaaS cluster what a given application needs to run successfully. Let&#39;s look at a sample <code>stackato.yml</code> <a href="https://github.com/Stackato-Apps/drupal-pressflow/blob/35e474b53d19fb52c50be6533692477b8352938d/stackato.yml">file</a>.</p>
+
+<p>Here&#39;s an abbreviated version:</p>
+
+<pre><code>name: drupal-pressflow
+framework: php
+mem: 256M
+services:
+    $&#123;name&#125;-db: mysql
+    $&#123;name&#125;-fs: filesystem
+hooks:
+    post-staging:
+        # First we get drush and put it in the app root (more secure).
+        - curl -sfS http://ftp.drupal.org/files/projects/drush-7.x-5.1.tar.gz | tar xzf -
+        # This does the full install.
+        - &quot;- $STACKATO_APP_ROOT/drush/drush -r $HOME site-install -y --db-url=$DATABASE_URL --account-name=admin --account-pass=passwd --site-name=Stackato --locale=en-US&quot;
+</code></pre>
+
+<p>Here we see the over-indenting and some ugly long lines. Let&#39;s make it shiny:</p>
+
+<pre><code>name: drupal-pressflow
+framework: php
+mem: 256M
+services:
+  $&#123;name&#125;-db: mysql
+  $&#123;name&#125;-fs: filesystem
+hooks:
+  post-staging:
+  # First we get drush and put it in the app root (more secure).
+  - curl -sfS http://ftp.drupal.org/files/projects/drush-7.x-5.1.tar.gz |
+    tar xzf -
+  # This does the full install.
+  - &quot;- $STACKATO_APP_ROOT/drush/drush
+       -r $HOME site-install -y
+       --db-url=$DATABASE_URL
+       --account-name=admin
+       --account-pass=passwd
+       --site-name=Stackato
+       --locale=en-US&quot;
+</code></pre>
+
+<p>This YAML loads exactly the same, but look at the difference in readability! This is the case where humans can format YAML better than computers.</p>
+
+<h2>Beyond Configuration</h2>
+
+<p>If you just do these things, YAML will be 90% better world wide! I&#39;ll leave you with a few more fun things that you might not know about YAML. Without full explanation, try to grok the following YAML document. If you are not sure what&#39;s going on, write a little script in your language of choice to load it as YAML and dump it as JSON.</p>
+
+<pre><code>Single line sequence-in-sequence:
+  good:
+  - - - foo
+    - bar
+  bad:
+    -
+      -
+        - foo
+      - bar
+Any YAML can be a YAML string, by using literal style:
+  this: |
+    foo:
+      bar: baz
+  is the same as: &quot;foo:\n  bar: baz\n&quot;
+Quote escaping:
+  double: &quot; backslash \&quot;escaping\&quot; for double quotes &quot;
+  single: &#39; two chars &#39;&#39;escaping&#39;&#39; for single quotes &#39;
+Flow style for small lists or dicts:
+  colors: [red, white, blue]  # Like JSON without all the double quotes
+  fred: &#123;sex: male, age: 42&#125;
+Looks like confused JSON:
+  set notation: &#123;foo, bar, baz&#125;
+  ordered map: [ one: 1, two: 2, three: 3]
+Sets as map keys:   # Dice rolls.
+  [1, 6]: 3
+  [3, 4]: 5
+</code></pre>
+
+<p>Finally, remember that YAML (1.2) is a complete superset of JSON. That means that a proper YAML loader should be able to load any JSON correctly. This is interesting, because YAML was invented 4 years before JSON. It just happened that JSON only had a 3 or 4 edge cases that were not valid YAML 1.1, so we made a few tiny adjustments to &quot;fix&quot; this in YAML 1.2.</p>
+
+<p>I hope you found this this information interesting and useful. Help out the cause by spreading the word. Stop by <code>#yaml</code> or <code>#stackato</code> on irc.freenode.net if you have questions or just want to chat.</p>
+
+<h1>Author</h1>
+
+<p>Ingy döt Net helped create YAML with Clark Evans and Oren Ben-Kiki. He also helped ActiveState create Stackato. He is working on next generation YAML tools, and an upcoming short book on YAML.</p>
+
+</div>
+</body>
+</html>
