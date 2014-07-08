@@ -219,7 +219,7 @@ YAML and dump it as JSON.
     [1, 6]: 3
     [3, 4]: 5
 
-Finally, remember that YAML (1.2) is a complete superset of JSON. That means
+Finally, remember that "YAML (1.2)"[http://yaml.org/spec/1.2/spec.html] is a complete superset of JSON. That means
 that a proper YAML loader should be able to load any JSON correctly. This is
 interesting, because YAML was invented 4 years before JSON. It just happened
 that JSON only had a 3 or 4 edge cases that were not valid YAML 1.1, so we made
