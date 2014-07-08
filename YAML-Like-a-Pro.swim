@@ -139,7 +139,7 @@ double) let you split strings on a single space character (just like in HTML).
 The newline character is parsed as a space. Let's see how to use this to good
 effect.
 
-"ActiveState"[http://www.activestate.com/]'s "Stackato"[http://www.activestate.com/stackato/get_stackato] uses a simple
+ActiveState's "Stackato"[http://www.activestate.com/stackato/get_stackato] uses a simple
 YAML file to tell a PaaS cluster what a given application needs to run
 successfully. Let's look at a sample `stackato.yml`
 "file"[https://github.com/Stackato-Apps/drupal-pressflow/blob/35e474b53d19fb52c50be6533692477b8352938d/stackato.yml].
